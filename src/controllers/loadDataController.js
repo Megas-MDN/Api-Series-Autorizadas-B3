@@ -20,8 +20,10 @@ module.exports = class LoadDataController {
       const file = await readFile('series.json');
       const [header, ...dataOptions] = JSON.parse(file);
       const index = Math.floor(Math.random() * dataOptions.length);
+      console.log('Excluindo a base Series & Header');
       await Series.deleteMany({});
       await Header.deleteMany({});
+      console.log('Inserindo os lotes de dados atualizados.');
       Series.insertMany(dataOptions);
       Header.insertMany([{ header }]);
       return res.status(200).send({

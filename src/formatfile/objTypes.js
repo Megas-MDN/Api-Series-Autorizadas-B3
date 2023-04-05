@@ -22,7 +22,45 @@ const indexItemsType03 = {
   vencimento: 16,
 };
 
+const mesLetra = {
+  janeiro: ['A', 'M'],
+  fevereiro: ['B', 'N'],
+  marco: ['C', 'O'],
+  abril: ['D', 'P'],
+  maio: ['E', 'Q'],
+  junho: ['F', 'R'],
+  julho: ['G', 'S'],
+  agosto: ['H', 'T'],
+  setembro: ['I', 'U'],
+  outubro: ['J', 'V'],
+  novembro: ['K', 'W'],
+  dezembro: ['L', 'X'],
+};
+
+const meses = [
+  'janeiro',
+  'fevereiro',
+  'marco',
+  'abril',
+  'maio',
+  'junho',
+  'julho',
+  'agosto',
+  'setembro',
+  'outubro',
+  'novembro',
+  'dezembro',
+];
+
+const tipo = {
+  ativo: ['ON', 'PN'],
+  opcao: ['EUROPEU', 'AMERICANO'],
+};
+
 module.exports = {
   indexItemsType02,
   indexItemsType03,
+  mesLetra,
+  meses,
+  tipo,
 };
