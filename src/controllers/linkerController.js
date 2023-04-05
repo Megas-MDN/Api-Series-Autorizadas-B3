@@ -57,7 +57,7 @@ module.exports = class LinkerController {
     }
   };
 
-  static checkSource = async (req, res, next) => {
+  static checkSource = async (_req, res, next) => {
     try {
       const [source] = await Source.find({});
       const pageSource = await getSourceB3(process.env.URL_SOURCE);

@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "nodemon --ignore 'assets/*.*' src/index.js "
+    "dev": "nodemon --ignore ./src/assets/ src/index.js"
   },
   "keywords": [],
   "author": "",
