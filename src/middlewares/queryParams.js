@@ -41,7 +41,7 @@ module.exports = (req, _res, next) => {
     req.pag = pagination;
     req.search = {};
     if (opcao) {
-      req.search = { ticket: opcao };
+      req.search = { ticket: opcao.toUpperCase() };
       return next();
     }
     if (atual && vencimento) {
