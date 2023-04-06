@@ -17,6 +17,7 @@ module.exports = async (Url) => {
   console.log('Gravando o novo arquivo zip');
   const pathFile = path.resolve(pathFileAssets, 'series.zip');
   console.log(pathFile);
+  console.log(process.cwd());
   fs.writeFileSync(pathFile, data);
   console.log('Sucesso!');
 };
