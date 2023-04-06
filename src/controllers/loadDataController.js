@@ -44,6 +44,7 @@ module.exports = class LoadDataController {
       console.log('Inserindo os lotes de dados atualizados.');
       Series.insertMany(dataOptions);
       Header.insertMany([{ header }]);
+      console.log('Base atualizada com sucesso.', new Date());
       return res.status(200).send({
         message: 'Updated!',
         total: dataOptions.length,
