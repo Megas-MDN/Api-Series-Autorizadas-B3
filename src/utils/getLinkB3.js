@@ -2,6 +2,7 @@ require('dotenv/config');
 const puppeteer = require('puppeteer');
 
 const main = async (url) => {
+  console.log('Abrindo o launcher');
   const browser = await puppeteer.launch({
     args: [
       '--disable-setuid-sandbox',
@@ -15,8 +16,8 @@ const main = async (url) => {
         : puppeteer.executablePath(),
   });
   const page = await browser.newPage();
+  console.log('Procurando o link');
   await page.goto(url);
-
   const link = await page.evaluate(() => {
     const strInteresse = 'Lista Completa de Séries Autorizadas';
     const arr = Array.from(document.querySelectorAll('a'), (el) => ({
@@ -26,6 +27,7 @@ const main = async (url) => {
     return arr.find((el) => el.text.includes(strInteresse));
   });
 
+  console.log('Fechando o browser e retornando o link');
   await browser.close();
   return link;
 };
