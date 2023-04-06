@@ -22,8 +22,12 @@ module.exports = class LoadDataController {
       const index = Math.floor(Math.random() * dataOptions.length);
       console.log('Excluindo a base Series & Header');
 
-      await Series.collection.drop();
-      await Header.collection.drop();
+      try {
+        await Series.collection.drop();
+        await Header.collection.drop();
+      } catch (error) {
+        console.log('Bases já foram excluidas!');
+      }
       console.log('Inserindo os lotes de dados atualizados.');
       Series.insertMany(dataOptions);
       Header.insertMany([{ header }]);

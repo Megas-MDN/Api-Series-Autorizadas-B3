@@ -1,7 +1,6 @@
 const fs = require('fs');
-const https = require('https');
-const url = require('url');
-// const unzipFile = require('./unzipFile');
+const path = require('path');
+const pathFileAssets = require('../assets/dirname');
 const axios = require('axios');
 
 module.exports = async (Url) => {
@@ -16,22 +15,8 @@ module.exports = async (Url) => {
   const data = Buffer.from(response.data, 'binary');
 
   console.log('Gravando o novo arquivo zip');
-  fs.writeFileSync(`./src/assets/series.zip`, data);
+  const pathFile = path.resolve(pathFileAssets, 'series.zip');
+  console.log(pathFile);
+  fs.writeFileSync(pathFile, data);
+  console.log('Sucesso!');
 };
-
-/*
-(Url) => {
-  https.get(url.parse(Url), (res) => {
-    const data = [];
-    res
-      .on('data', (chk) => {
-        data.push(chk);
-      })
-      .on('end', () => {
-        const bffy = Buffer.concat(data);
-        fs.writeFileSync(`./src/assets/series.zip`, bffy);
-        unzipFile();
-      });
-  });
-};
-*/
