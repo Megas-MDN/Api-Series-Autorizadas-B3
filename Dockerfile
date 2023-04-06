@@ -6,6 +6,7 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
 WORKDIR /usr/src/app
 
 COPY package*.json ./
-RUN npm config set unsafe-perm true
+RUN chown -Rh $user:$user
+USER $user
 COPY . .
 CMD [ "node", "src/index.js" ]
