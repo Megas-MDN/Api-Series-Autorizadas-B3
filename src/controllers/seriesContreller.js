@@ -5,7 +5,7 @@ module.exports = class SeriesController {
     try {
       const { sort } = req.query;
       const { pag, search } = req;
-
+      // console.log(search, 'Obj busca controller');
       const series = await Series.find(search, '-__v -_id ')
         .sort({ ativPrincipal: 1, strike: sort ? 1 : -1 })
         .skip(pag.offset)

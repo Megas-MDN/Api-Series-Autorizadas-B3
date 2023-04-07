@@ -33,13 +33,14 @@ p {
   width: 99%;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 10px 0px;
+  gap: 10px;
+  padding: 5px;
   justify-content: center;
   align-items: center;
   border: 1px solid red;
   border-radius: 20px;
   background-color: rgb(50, 50, 50);
+  margin-top: 10px;
 }
 
 .github {
@@ -68,7 +69,8 @@ p {
   padding: 10px;
   width: 100%;
   display: flex;
-  gap: 20px;
+  gap: 5px;
+  justify-content: space-between;
 }
 
 .url {
@@ -91,16 +93,104 @@ p {
   color: black;
 }
 
+.mainform {
+  width: 100%;
+  /* border: 1px solid rgb(11, 231, 22); */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  padding: 2px;
+}
+.sort {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: center;
+}
+
+.opcao {
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid rgb(231, 11, 216); */
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.opcao input {
+  width: 45%;
+  text-transform: uppercase;
+}
+
 .fields {
   display: flex;
   gap: 10px;
   padding: 5px;
-  border: 1px solid red;
-  width: 95%;
+  /* border: 1px solid rgb(55, 0, 255); */
+  width: 99%;
   justify-content: center;
+  margin: 0 auto;
+}
+
+label {
+  display: flex;
+  gap: 5px;
+}
+
+.tipo-ativo {
+  display: flex;
+  gap: 5px;
+  padding: 5px;
 }
 
 .left, .right {
-  border: 1px solid red;
+  border: 1px solid rgb(77, 76, 76);
+  padding: 5px;
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px
+}
+
+.mes-ano  {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mes-ano > label > input {
+  width: 90%;
+}
+
+
+.strikes {
+  display: flex;
+  flex-direction: column;
+  gap: 5px
+}
+
+.strikes > label {
+  display: flex;
+  justify-content: space-between;
+}
+
+.strikes > label > input {
+  width: 60%;
+}
+
+.paginacao {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  padding: 5px;
+  gap: 5px;
+}
+
+.paginacao > label {
+  display: flex;
+  justify-content: space-between;
+}
+
+.paginacao > label > input {
+  width: 40%;
 }

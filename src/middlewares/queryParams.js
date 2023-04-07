@@ -1,18 +1,25 @@
 const { mesLetra, meses, tipo } = require('../formatfile/objTypes');
 
-const numValid = (num) => !!(!Number.isNaN(+num) && +num > 0);
+const logFormatQuery = (obj) => {
+  const arrStr = Object.keys(obj).map((key) => `${key} - ${obj[key]}`);
+  console.log('-->>', arrStr.join(' * '), '<<--', '\n' + new Date() + '\n');
+};
 
-const vencimentoAtual = (vencimento) => {
-  if (!meses.includes(vencimento)) return {};
-  const date = new Date();
-  const mesAtual = date.getMonth();
-  const mesVencimento = meses.indexOf(vencimento);
-  let year = date.getFullYear();
-  if (mesVencimento < mesAtual) {
-    year += 1;
-  }
-  const start = new Date(year, mesVencimento, 1);
-  const end = new Date(year, mesVencimento, 31);
+const numValid = (num) => !!(!Number.isNaN(+num) && +num > 0);
+const validMes = (arr, str) =>
+  arr.find((mes) => mes.includes(str?.toLocaleLowerCase()));
+
+const vencimentoAtual = (vencimento, ano) => {
+  const mes = validMes(meses, vencimento);
+
+  if (!mes)
+    return {
+      $gte: new Date(+ano, 0, 1),
+      $lte: new Date(+ano, 11, 31),
+    };
+  const mesVencimento = meses.indexOf(mes);
+  const start = new Date(+ano, mesVencimento, 1);
+  const end = new Date(+ano, mesVencimento, 31);
 
   return {
     $gte: start,
@@ -22,19 +29,19 @@ const vencimentoAtual = (vencimento) => {
 module.exports = (req, _res, next) => {
   try {
     const {
-      ativo,
-      tipativo,
-      tipoVencimentopcao,
-      tipoopcao,
-      vencimento,
-      atual,
-      opcao,
+      ativo, //
+      tipativo, //
+      tipoVencimentopcao, //
+      tipoopcao, //
+      vencimento, //
+      ano, //
+      opcao, //
       offset,
       limit,
-      min,
-      max,
+      min, //
+      max, //
     } = req.query;
-
+    logFormatQuery(req.query);
     const pagination = {
       limit: numValid(limit) ? limit : 20,
       offset: numValid(offset) ? offset : 0,
@@ -45,9 +52,9 @@ module.exports = (req, _res, next) => {
       req.search = { ticket: opcao.toUpperCase() };
       return next();
     }
-    if (atual && vencimento) {
+    if ((numValid(ano) && vencimento) || numValid(ano)) {
       req.search = {
-        vencimento: vencimentoAtual(vencimento),
+        vencimento: vencimentoAtual(vencimento, ano),
       };
     } else if (vencimento) {
       const [call, put] = mesLetra[vencimento] ?? ['Z', 'Z'];
@@ -91,6 +98,7 @@ module.exports = (req, _res, next) => {
       const regex = new RegExp(`${tipo[callPut]}`, 'i');
       req.search.labelDerivativo = { $regex: regex };
     }
+
     return next();
   } catch (error) {
     return next({ messge: error.message });
