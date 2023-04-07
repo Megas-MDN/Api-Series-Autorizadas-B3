@@ -55,6 +55,8 @@ const meses = [
 const tipo = {
   ativo: ['ON', 'PN'],
   opcao: ['EUROPEU', 'AMERICANO'],
+  call: 'OPCOES COMPRA',
+  put: 'OPCOES VENDA',
 };
 
 module.exports = {

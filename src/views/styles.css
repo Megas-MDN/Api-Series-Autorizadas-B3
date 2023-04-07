@@ -1,0 +1,106 @@
+ body {
+   background-color:black;
+   color: white;
+   text-align: center;
+ }
+ .container {
+  width: 100vw;
+  background-color: rgb(58, 57, 57);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  border: 1px solid red;
+  border-radius: 20px;
+  padding: 10px;
+}
+a {
+  text-decoration: none;
+  color: white;
+  transition: ease-in-out 0.3s;
+}
+a:hover {
+  color: rgb(191, 190, 190);
+}
+p {
+  display: block;
+}
+
+.form {
+  width: 99%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px 0px;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid red;
+  border-radius: 20px;
+  background-color: rgb(50, 50, 50);
+}
+
+.github {
+  display: flex;
+  gap: 10px;
+  align-content: center;
+  align-items: center;
+  padding: 10px;
+  width: fit-content;
+  border-radius: 10px;
+  border: 1.5px solid black;
+  font-weight: 500;
+}
+
+.github {
+  transition: ease-in-out 0.5s;
+}
+
+.github:hover {
+  color: black;
+  background-color: rgb(212, 206, 206);
+  border: 1.5px solid gold;
+}
+
+.containerInputs {
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  gap: 20px;
+}
+
+.url {
+  width: 99%;
+  flex: 2;
+  border-radius: 10px;
+  color: white;
+  font-size: 0.8rem;
+  letter-spacing: 1.1px;
+}
+
+.btn {
+  border: 1px solid white;
+  color: white;
+  transition: ease-in-out 0.2s;
+}
+
+.btn:hover {
+  background-color: gold;
+  color: black;
+}
+
+.fields {
+  display: flex;
+  gap: 10px;
+  padding: 5px;
+  border: 1px solid red;
+  width: 95%;
+  justify-content: center;
+}
+
+.left, .right {
+  border: 1px solid red;
+  flex: 1;
+}

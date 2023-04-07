@@ -24,7 +24,8 @@ module.exports = (req, _res, next) => {
     const {
       ativo,
       tipativo,
-      tipopcao,
+      tipoVencimentopcao,
+      tipoopcao,
       vencimento,
       atual,
       opcao,
@@ -69,16 +70,27 @@ module.exports = (req, _res, next) => {
       req.search.ativPrincipal = ativo.toUpperCase();
     }
 
-    if (tipativo && tipo.ativo.includes(tipativo.toUpperCase())) {
-      const regex = new RegExp(`${tipativo.toUpperCase()}`, 'i');
+    if (tipativo) {
+      const onPn = tipo.ativo.find((e) => e.includes(tipativo.toUpperCase()));
+      const regex = new RegExp(`${onPn}`, 'i');
       req.search.tipoAtivoPrincipal = { $regex: regex };
     }
 
-    if (tipopcao && tipo.opcao.includes(tipopcao.toUpperCase())) {
-      const regex = new RegExp(`${tipopcao}`, 'i');
+    if (tipoVencimentopcao) {
+      const eurAmer = tipo.opcao.find((e) =>
+        e.includes(tipoVencimentopcao.toLocaleUpperCase())
+      );
+      const regex = new RegExp(`${eurAmer}`, 'i');
       req.search.tipoDerivativo = { $regex: regex };
     }
 
+    if (tipoopcao) {
+      const callPut = ['call', 'put'].find((e) =>
+        e.includes(tipoopcao.toLocaleLowerCase())
+      );
+      const regex = new RegExp(`${tipo[callPut]}`, 'i');
+      req.search.labelDerivativo = { $regex: regex };
+    }
     return next();
   } catch (error) {
     return next({ messge: error.message });
