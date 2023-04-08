@@ -1,6 +1,6 @@
 # API Series Autorizadas
 
-xxxx.xx xx xx xxxxx xxxxx xx xxxx xxxxx xxxx xxxxx xxx xx xxxxx.
+A API desenvolvida tem como objetivo disponibilizar o acesso às opções que estão em vigência na bolsa de valores B3 de maneira formatada e filtrada. Ela permite o acesso do tipo GET na rota /search com diversas possibilidades de query params para buscar opções e na rota /source para acessar o link do arquivo fonte no site da B3.
 
 Link do query maker da aplicação: [demo api](https://api-series-autorizadas-b3.up.railway.app/)
 Endpoint para requisitar os dados: [/search?](https://api-series-autorizadas-b3.up.railway.app/search?);
