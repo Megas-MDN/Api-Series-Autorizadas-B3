@@ -26,13 +26,13 @@ Funcionalidades implementadas na API:
 
 - **Inserção dos dados do arquivo .json no banco de dados**
 
-- **Disponibilização dos dados pelo endpoint**
+- **Disponibilização dos dados pelo endpoint /search**
 
 - **Mais de 10 Query Parameters para filtragem**
 
-- **As Query Parameters podem ser combinadas para refinar a filtragem** (GitHub Action)
+- **As Query Parameters podem ser combinadas para refinar a filtragem**
 
-- **Query Maker para facilitar a construção da query** (GitHub Action)
+- **Query Maker para facilitar a construção da query**
 
 <hr>
 
