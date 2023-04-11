@@ -11,6 +11,9 @@ module.exports = class LoadDataController {
     console.log('Encontrando a atualizando o source.');
     const [source] = await Source.find({});
     source.src = src;
+    source.date = new Date().toLocaleString('pt-BR', {
+      timeZone: 'America/Sao_Paulo',
+    });
     await source.save();
   };
 
@@ -44,7 +47,10 @@ module.exports = class LoadDataController {
       console.log('Inserindo os lotes de dados atualizados.');
       Series.insertMany(dataOptions);
       Header.insertMany([{ header }]);
-      console.log('Base atualizada com sucesso.', new Date());
+      console.log(
+        'Base atualizada com sucesso.',
+        new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' })
+      );
       return res.status(200).send({
         message: 'Updated!',
         total: dataOptions.length,
