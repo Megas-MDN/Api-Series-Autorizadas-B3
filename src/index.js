@@ -12,7 +12,7 @@ app.use(cors());
 
 app.use(router);
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3003;
 
 startDatabase()
   .then(() => {

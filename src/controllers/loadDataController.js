@@ -9,12 +9,23 @@ const { readFile } = require('../utils/readWrite');
 module.exports = class LoadDataController {
   static updateSource = async (src) => {
     console.log('Encontrando a atualizando o source.');
-    const [source] = await Source.find({});
-    source.src = src;
-    source.date = new Date().toLocaleString('pt-BR', {
-      timeZone: 'America/Sao_Paulo',
-    });
-    await source.save();
+    try {
+      const [source] = await Source.find({});
+      if (!source) {
+        const newSource = new Source({
+          text: 'Lista Completa de Séries Autorizadas',
+          src,
+          date: new Date(),
+        });
+        return newSource.save();
+      }
+      source.src = src;
+      source.date = new Date();
+      await source.save();
+    } catch (error) {
+      console.log(error.message);
+      console.log('Falha ao atualizar a Source / processo continua');
+    }
   };
 
   static getDataFormated = async (src) => {
@@ -36,13 +47,20 @@ module.exports = class LoadDataController {
       }
       const { src } = req.body;
 
-      console.log('Excluindo a base Series & Header');
+      console.log('Formatando os dados.');
       const [[header, dataOptions, index]] = await Promise.all([
         LoadDataController.getDataFormated(src),
         LoadDataController.updateSource(src),
-        Series.collection.drop(),
-        Header.collection.drop(),
       ]);
+
+      try {
+        console.log('Dropando o banco <Series | Header>');
+        await Promise.all([Series.collection.drop(), Header.collection.drop()]);
+        console.log('Banco zerado pronto para a nova base.');
+      } catch (error) {
+        console.log(error.message);
+        console.log('Porem os dados serão inseridos / criados.');
+      }
 
       console.log('Inserindo os lotes de dados atualizados.');
       Series.insertMany(dataOptions);

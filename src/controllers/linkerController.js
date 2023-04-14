@@ -6,7 +6,7 @@ module.exports = class LinkerController {
   static getSource = async (_req, res, next) => {
     try {
       const [preSource] = await Source.find({}, '-__v');
-
+      if (!preSource) return res.status(200).send({ src: '', text: '' });
       return res.status(200).send({
         message: 'Source na base de dados.',
         text: preSource.text,
@@ -14,6 +14,8 @@ module.exports = class LinkerController {
         date: preSource.date,
       });
     } catch (error) {
+      console.log('Error na source');
+      console.log(error.message);
       return next({ message: error.message });
     }
   };
