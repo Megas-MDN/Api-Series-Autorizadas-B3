@@ -1,6 +1,6 @@
 const fs = require('fs/promises');
 const path = require('path');
-const pathFileAssets = require('../assets/dirname');
+const pathFileAssets = require('../assets/tmp/dirname');
 
 const readFile = async (pathFile) =>
   fs.readFile(path.resolve(pathFileAssets, pathFile), 'utf-8');

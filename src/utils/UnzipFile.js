@@ -1,6 +1,6 @@
 const decompress = require('decompress');
 const path = require('path');
-const pathFileAssets = require('../assets/dirname');
+const pathFileAssets = require('../assets/tmp/dirname');
 const fs = require('fs/promises');
 
 module.exports = async () => {
