@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const pathFileAssets = require('../assets/tmp/dirname');
+const pathFileAssets = require('../../tmp/dirname');
 const axios = require('axios');
 
 module.exports = async (Url) => {
